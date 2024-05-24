@@ -6,3 +6,7 @@ body {
   background: #eee;
   font-family: 'Inter';
 }
+
+h3 {
+  font-weight: 400;
+}
