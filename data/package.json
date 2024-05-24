@@ -1,0 +1,13 @@
+{
+    "name": "task-planner-app",
+    "version": "1.0.0",
+    "description": "A task planner app using json-server",
+    "main": "index.js",
+    "scripts": {
+      "start": "json-server --watch db.json"
+    },
+    "dependencies": {
+      "json-server": "^0.17.0"
+    }
+  }
+  
