@@ -13,15 +13,15 @@ const renderTasks = async (term) => {
   let template = '';
   tasks.reverse().forEach(task => {
     template += `
-      <div class="card m-5">
+      <div class="card mb-2">
         <div class="card-body">
           <h5 class="card-title">${task.name}</h5>
-          <p class="card-text">${task.description}</p>
+          <p class="card-text">${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
-              <li class="list-group-item"><span>Assigned To:</span>${task.assignedTo} </li>
-              <li class="list-group-item">Due Date: ${task.dueDate}</li>
-              <li class="list-group-item">Status: ${task.status}</li>
+              <li class="list-group-item"><span>Assigned To: </span>${task.assignedTo} </li>
+              <li class="list-group-item"><span>Due Date</span>: ${task.dueDate}</li>
+              <li class="list-group-item"><span>Status</span>: ${task.status}</li>
         </ul>
       </div>
     `

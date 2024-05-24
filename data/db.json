@@ -1,5 +1,6 @@
 {
   "tasks": [
+<<<<<<< HEAD
     {
       "id": "3076",
       "name": "Kingsford Owusu-Achiaw",
@@ -8,5 +9,8 @@
       "dueDate": "2024-06-13",
       "status": "todo"
     }
+=======
+   
+>>>>>>> a3f615ecc180c7211b96427e45a111e521cdd32b
   ]
 }
