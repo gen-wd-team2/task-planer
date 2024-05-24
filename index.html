@@ -14,17 +14,6 @@
       <div class="col-7 border-end border-black">
         <h4>All Tasks</h4>
         <div class="tasks">
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy Dress</h5>
-                  <p class="card-text">Get a kaba and slit from boohoo</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><span>Assigned To:</span> Perpetual</li>
-                  <li class="list-group-item">Due Date: 26-06-2024</li>
-                  <li class="list-group-item">Status: Pending</li>
-                </ul>
-              </div>
         </div>
       </div>
       <div class="col-4">
@@ -33,28 +22,28 @@
             <form id="taskForm" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="taskName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="taskName" required placeholder="Enter Your Task Name">
+                    <input type="text" class="form-control" id="taskName" name="name" placeholder="Enter Your Task Name">
                 </div>
                 <div class="mb-3">
                     <label for="taskDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="taskDescription" rows="3" required placeholder="Enter your description"></textarea>
+                    <textarea class="form-control" id="taskDescription" rows="3" name="description" placeholder="Enter your description"></textarea>
                    
                 </div>
                 <div class="mb-3">
                     <label for="assignedTo" class="form-label">Assigned To</label>
-                    <input type="text" class="form-control" id="assignedTo" required >
+                    <input type="text" class="form-control" id="assignedTo" name="assignedTo" required >
                
                 </div>
                 <div class="mb-3">
                     <label for="dueDate" class="form-label">Due Date</label>
-                    <input type="date" class="form-control" id="dueDate" required>
+                    <input type="date" class="form-control" id="dueDate" name="dueDate" required>
                     <div class="invalid-feedback">
                         Please select a due date.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
-                    <select class="form-select" id="status" required>
+                    <select class="form-select" id="status" name="status" required>
                         <option value="">Choose...</option>
                         <option value="todo">To Do</option>
                         <option value="inprogress">In Progress</option>

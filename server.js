@@ -5,16 +5,13 @@ const container = document.querySelector('.tasks');
 const renderTasks = async (term) => {
   console.log(term);
   let uri = 'http://localhost:3000/tasks';
-  // if (term) {
-  //   uri += `&q=${term}`
-  // }
 
   const res = await fetch(uri);
   const tasks = await res.json();
   console.log(tasks);
 
   let template = '';
-  tasks.forEach(task => {
+  tasks.reverse().forEach(task => {
     template += `
       <div class="card m-5">
         <div class="card-body">
@@ -42,12 +39,14 @@ const createTask = async (e) => {
   e.preventDefault();
 
   const task = {
-    title: form.title.value,
-    body: form.body.value,
-    likes: 0,
+    name: form.name.value,
+    description: form.description.value,
+    assignedTo: form.assignedTo.value,
+    dueDate: form.dueDate.value,
+    status: form.status.value,
   }
 
-  await fetch('http://localhost:3000/posts', {
+  await fetch('http://localhost:3000/tasks', {
     method: 'POST',
     body: JSON.stringify(task),
     headers: { 'Content-Type': 'application/json' }
