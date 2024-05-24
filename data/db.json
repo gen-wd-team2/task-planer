@@ -2,21 +2,19 @@
     "tasks": [
       {
         "id": 1,
-        "title": "Task 1",
-        "description": "Description for Task 1",
-        "AssignedTo": "Member",
-        "DueDate": "End date",
-        "Status": "Working Task",
-        "completed": "false"
+        "name": "Buy a dress",
+        "description": "Buy Kaba and Slit from boohoo",
+        "assignedTo": "Perpetual",
+        "dueDate": "26-06-2024",
+        "status": "Pending"
       },
       {
         "id": 2,
-        "title": "Task 1",
-        "description": "Description for Task 1",
-        "AssignedTo": "Member",
-        "DueDate": "End date",
-        "Status": "Working Task",
-        "completed": "false"
+        "name": "Burger",
+        "description": "Buy out team lead a burger from burger king cos he the best",
+        "assignedTo": "Everyone",
+        "dueDate": "05-07-2024",
+        "status": "Pending"
       }
     ]
   }
