@@ -3,7 +3,7 @@
 
 /* base styles */
 body {
-  background: #eee;
+  background: #352121;
   font-family: 'Inter';
 }
 
@@ -30,7 +30,43 @@ ul {
   justify-content: flex-start;
   gap: 10px;
 }
-
+body {
+  background: url('https://i.ibb.co/1Kxt2NC/pexels-cup-of-couple-6956917.jpg') no-repeat center center fixed;
+  background-size:cover ;
+  color: #fdfbfb;
+  display: flex;
+  min-height: 100vh;
+}
+.container {
+  background-color: rgba(219, 171, 171, 0.95);
+  background-size:cover;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.border-black {
+  border-color: black !important;
+}
+.tasks {
+  background-color: #f1bbbb;
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: #e5e5e5;
+}
+.task {
+  margin-bottom: 20px;
+}
+.form-control, .form-select {
+  background-color: #e4d9d9;
+  border: none;
+  color: #fff;
+}
+.form-control:focus, .form-select:focus {
+  background-color: #d4c6c6;
+}
+.form-label {
+  color: #ccc;
+}
 
 
 
