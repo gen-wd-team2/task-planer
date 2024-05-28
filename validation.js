@@ -74,3 +74,45 @@ document.addEventListener('DOMContentLoaded', function() {
         tasksContainer.appendChild(taskElement);
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filters = document.querySelectorAll('.groupby');
+    const taskList = document.querySelector('.task-list');
+
+    fetch('db.json')
+        .then(response => response.json())
+        .then(data => {
+            const tasks = data.tasks;
+            renderTasks(tasks);
+            filters.forEach(filter => {
+                filter.addEventListener('change', () => updateTasks(tasks));
+            });
+            updateTasks(tasks); // Initialize with current filter state
+        });
+
+    function renderTasks(tasks) {
+        tasks.forEach(task => {
+            const taskElement = document.createElement('div');
+            taskElement.className = `task ${task.type}`;
+            taskElement.textContent = task.title;
+            taskList.appendChild(taskElement);
+        });
+    }
+
+    function updateTasks(tasks) {
+        const activeFilters = Array.from(filters)
+            .filter(filter => filter.checked)
+            .map(filter => filter.value);
+
+        const taskElements = document.querySelectorAll('.task');
+        taskElements.forEach(taskElement => {
+            const taskClasses = Array.from(taskElement.classList);
+            if (activeFilters.length === 0 || activeFilters.some(filter => taskClasses.includes(filter))) {
+                taskElement.style.display = 'block';
+            } else {
+                taskElement.style.display = 'none';
+            }
+        });
+    }
+});
