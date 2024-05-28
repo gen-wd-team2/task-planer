@@ -10,11 +10,20 @@
   <div class="container mt-5 text-start">
     <div class="row">
       <div class="col">
-        <h4 class="">Group By</h4>
+        <h4 >Group By</h4>
         <ul>
-          <li>Pending</li>
-          <li>In Progress</li>
-          <li>Completed</li>
+          <li>
+            <label ><input type="checkbox" class="groupby comedown">To Do</label>
+          </li>
+          <li>
+            <label><input type="checkbox" class="groupby">In Progress</label>
+          </li>
+          <li>
+            <label><input type="checkbox" class="groupby">Done</label>
+          </li>
+          <li>
+            <label><input type="checkbox" class="groupby">Blocked</label>
+          </li>
         </ul>
       </div>
       <div class="col-7 border-end border-black">
@@ -66,9 +75,10 @@
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-select" id="status" name="status" required>
-                        <option value="Pending">Pending</option>
-                        <option value="In progress">In Progress</option>
-                        <option value="Completed">Completed</option>
+                        <option value="ToDo">To Do</option>
+                        <option value="InProgress">In Progress</option>
+                        <option value="Done">Done</option>
+                        <option value="Blocked">Blocked</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a status.
