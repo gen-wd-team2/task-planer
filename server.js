@@ -13,9 +13,9 @@ const renderTasks = async (term) => {
   let template = '';
   tasks.reverse().forEach(task => {
     template += `
-      <div class="card mb-3 shadow-lg rounded">
+      <div class="card mb-3 shadow-lg rounded" contenteditable="true">
         <div class="card-body">
-          <h5 class="card-title">${task.name}</h5>
+          <h5 class="card-title task-flex"><span> Name: ${task.name}</span><span></span></h5>
           <p class="card-text">${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
