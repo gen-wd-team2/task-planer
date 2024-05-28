@@ -48,10 +48,18 @@ body {
   border-color: black !important;
 }
 .tasks {
-  background-color: #f1bbbb;
-  padding: 15px 20px;
-  border-radius: 8px;
-  color: #e5e5e5;
+  background: url('https://i.ibb.co/P6sf0cP/pexels-pnw-prod-9219059.jpg') no-repeat center center fixed;
+  background-size:cover;
+  padding: 20px 30px;
+  border-radius: 100px;
+  
+}
+.col-3 {
+  background: url('https://i.ibb.co/BN60vZH/pexels-athena-3550651.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px 10px;
+  border-radius: 20px;
+
 }
 .task {
   margin-bottom: 20px;
@@ -59,13 +67,13 @@ body {
 .form-control, .form-select {
   background-color: #e4d9d9;
   border: none;
-  color: #fff;
+  color: #f5f2f2;
 }
 .form-control:focus, .form-select:focus {
-  background-color: #d4c6c6;
+  background-color: #ecbd39;
 }
 .form-label {
-  color: #ccc;
+  color: #55f1fc;
 }
 
 
