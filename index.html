@@ -10,28 +10,59 @@
   <div class="container mt-5 text-start">
     <div class="row">
       <div class="col">
+        <h4 >Group By</h4>
+        <ul>
+          <li>
+            <label ><input type="checkbox" class="groupby comedown">To Do</label>
+          </li>
+          <li>
+            <label><input type="checkbox" class="groupby">In Progress</label>
+          </li>
+          <li>
+            <label><input type="checkbox" class="groupby">Done</label>
+          </li>
+          <li>
+            <label><input type="checkbox" class="groupby">Blocked</label>
+          </li>
+        </ul>
       </div>
       <div class="col-7 border-end border-black">
         <h4>All Tasks</h4>
-        <div class="p-4 tasks">
+        <div class="p-4 tasks task-list">
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <h5>Create a Task</h5>
         <div class="container shadow-lg">
             <form id="taskForm" class="needs-validation pb-2" novalidate>
                 <div class="mb-3">
                     <label for="taskName" class="form-label">Name</label>
                     <input type="text" class="form-control" id="taskName" name="name" placeholder="Enter Your Task Name" required>
+                    <div class="invalid-feedback">
+                      Please enter a task name
+                  </div>
+
                 </div>
                 <div class="mb-3">
                     <label for="taskDescription" class="form-label">Description</label>
                     <textarea class="form-control" id="taskDescription" rows="3" name="description" placeholder="Enter your description" required></textarea>
+                    <div class="invalid-feedback">
+                      Please enter a task description
+                  </div>
                    
                 </div>
                 <div class="mb-3">
                     <label for="assignedTo" class="form-label">Assigned To</label>
-                    <input type="text" class="form-control" id="assignedTo" name="assignedTo" required >
+                    <select class="form-select" id="assignedTo" name="assignedTo" required>
+                      <option value="Pending">Alfred</option>
+                      <option value="In progress">Perpetual</option>
+                      <option value="Completed">Kingsford</option>
+                      <option value="Completed">Fredrick</option>
+                      <option value="Completed">Seyram</option>
+                  </select>
+                  <div class="invalid-feedback">
+                      Please select a status.
+                  </div>
                
                 </div>
                 <div class="mb-3">
@@ -44,9 +75,10 @@
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-select" id="status" name="status" required>
-                        <option value="Pending">Pending</option>
-                        <option value="In progress">In Progress</option>
-                        <option value="Completed">Completed</option>
+                        <option value="ToDo">To Do</option>
+                        <option value="InProgress">In Progress</option>
+                        <option value="Done">Done</option>
+                        <option value="Blocked">Blocked</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a status.

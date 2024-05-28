@@ -13,7 +13,7 @@ const renderTasks = async (term) => {
   let template = '';
   tasks.reverse().forEach(task => {
     template += `
-      <div class="card mb-3 shadow-lg">
+      <div class="card mb-3 shadow-lg rounded">
         <div class="card-body">
           <h5 class="card-title">${task.name}</h5>
           <p class="card-text">${task.description}</p> 
@@ -55,7 +55,31 @@ const createTask = async (e) => {
   window.location.replace('/')
 }
 
-form.addEventListener('submit', createTask);
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }else {
+        createTask(event);
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+// form.addEventListener('submit', createTask);
+
 
 
 window.addEventListener('DOMContentLoaded', () => renderTasks());
