@@ -10,13 +10,19 @@
   <div class="container mt-5 text-start">
     <div class="row">
       <div class="col">
+        <h4 class="">Group By</h4>
+        <ul>
+          <li>Pending</li>
+          <li>In Progress</li>
+          <li>Completed</li>
+        </ul>
       </div>
       <div class="col-7 border-end border-black">
         <h4>All Tasks</h4>
         <div class="p-4 tasks">
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <h5>Create a Task</h5>
         <div class="container shadow-lg">
             <form id="taskForm" class="needs-validation pb-2" novalidate>
@@ -38,10 +44,16 @@
                 </div>
                 <div class="mb-3">
                     <label for="assignedTo" class="form-label">Assigned To</label>
-                    <input type="text" class="form-control" id="assignedTo" name="assignedTo" required>
-                    <div class="invalid-feedback">
-                      Please assign task to a person
-                    </div>
+                    <select class="form-select" id="assignedTo" name="assignedTo" required>
+                      <option value="Pending">Alfred</option>
+                      <option value="In progress">Perpetual</option>
+                      <option value="Completed">Kingsford</option>
+                      <option value="Completed">Fredrick</option>
+                      <option value="Completed">Seyram</option>
+                  </select>
+                  <div class="invalid-feedback">
+                      Please select a status.
+                  </div>
                
                 </div>
                 <div class="mb-3">
