@@ -67,7 +67,7 @@ body {
 .form-control, .form-select {
   background-color: #e4d9d9;
   border: none;
-  color: #f5f2f2;
+  color: #130303;
 }
 .form-control:focus, .form-select:focus {
   background-color: #ecbd39;

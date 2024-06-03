@@ -1,20 +1,18 @@
+import { TaskManager } from './taskManager.js'
+
+const team2TaskManager = new TaskManager()
+
 // javascript for index.html
 const container = document.querySelector('.tasks');
 // const searchForm = document.querySelector('.search');
 
-const renderTasks = async (term) => {
-  console.log(term);
-  let uri = 'http://localhost:3000/tasks';
-
-  const res = await fetch(uri);
-  const tasks = await res.json();
-  console.log(tasks);
+const renderTasks = async () => {
 
   let template = '';
-  tasks.reverse().forEach(task => {
+  team2TaskManager.tasks.slice().reverse().forEach(task => {
     template += `
       <div class="card mb-3 shadow-lg rounded">
-        <div class="card-body">
+        <div class="card-body" data-id="${task.id}">
           <h5 class="card-title">${task.name}</h5>
           <p class="card-text">${task.description}</p> 
         </div>
@@ -38,21 +36,17 @@ const form = document.querySelector('form');
 const createTask = async (e) => {
   e.preventDefault();
 
-  const task = {
+  team2TaskManager.addTask({
     name: form.name.value,
     description: form.description.value,
     assignedTo: form.assignedTo.value,
     dueDate: form.dueDate.value,
     status: form.status.value,
-  }
-
-  await fetch('http://localhost:3000/tasks', {
-    method: 'POST',
-    body: JSON.stringify(task),
-    headers: { 'Content-Type': 'application/json' }
   })
 
+  console.log(team2TaskManager.tasks)
   window.location.replace('/')
+  
 }
 
 
