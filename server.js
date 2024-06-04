@@ -13,15 +13,15 @@ const renderTasks = async (term) => {
   let template = '';
   tasks.reverse().forEach(task => {
     template += `
-      <div class="card mb-3 shadow-lg rounded">
+      <div class="card mb-3 shadow-lg rounded" data-id${task.id} contenteditable="true">
         <div class="card-body">
-          <h5 class="card-title">${task.name}</h5>
-          <p class="card-text">${task.description}</p> 
+          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status}"></span></h5>
+          <p class="card-text"><strong>Description: </strong>${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
-              <li class="list-group-item"><span>Assigned To: </span>${task.assignedTo} </li>
-              <li class="list-group-item"><span>Due Date</span>: ${task.dueDate}</li>
-              <li class="list-group-item"><span>Status</span>: ${task.status}</li>
+              <li class="list-group-item"><strong>Assigned To: </strong>${task.assignedTo} </li>
+              <li class="list-group-item"><strong>Due Date</strong>: ${task.dueDate}</li>
+              <li class="list-group-item"><strong>Status</strong>: ${task.status}</li>
         </ul>
       </div>
     `
