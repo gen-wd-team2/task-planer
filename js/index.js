@@ -77,3 +77,4 @@ const createTask = async (e) => {
 
 
 window.addEventListener('DOMContentLoaded', () => renderTasks());
+

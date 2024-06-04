@@ -13,6 +13,12 @@ export class TaskManager {
             status: status
         })
         this.currentId++
-
     }
+        deleteTask(id) {
+            for(let i = 0; i < this.tasks.length; i++){
+                if( this.tasks[i].id == id) 
+                    delete this.tasks[i]
+             }
+    }
+
 }
