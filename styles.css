@@ -85,5 +85,5 @@ body {
 }
 
 .Pending { background-color: red;}
-.In-Progress { background-color: yellow;}
-.Completed { background-color: green;}
+.In-Progress { background-color: orange;}
+.Completed { background-color: grey;}
