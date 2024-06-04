@@ -79,7 +79,11 @@ const createTask = async (e) => {
 })()
 
 // form.addEventListener('submit', createTask);
+// search with keyword or name
+container.innerHTML = template;
 
-
+searchInput.addEventListener('input', (e) => {
+  renderTasks(e.target.value);
+});
 
 window.addEventListener('DOMContentLoaded', () => renderTasks());
