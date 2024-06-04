@@ -33,14 +33,14 @@ ul {
 body {
   background: url('https://i.ibb.co/1Kxt2NC/pexels-cup-of-couple-6956917.jpg') no-repeat center center fixed;
   background-size:cover ;
-  color: #fdfbfb;
+  color: black;
   display: flex;
   min-height: 100vh;
 }
 .container {
-  background-color: rgba(219, 171, 171, 0.95);
+  /* background-color: rgba(219, 171, 171, 0.95); */
   background-size:cover;
-  border-radius: 20px;
+  /* border-radius: 10px; */
   padding: 20px;
   margin-top: 20px;
 }
@@ -48,14 +48,14 @@ body {
   border-color: black !important;
 }
 .tasks {
-  background: url('https://i.ibb.co/P6sf0cP/pexels-pnw-prod-9219059.jpg') no-repeat center center fixed;
+  /* background: url('https://i.ibb.co/P6sf0cP/pexels-pnw-prod-9219059.jpg') no-repeat center center fixed; */
   background-size:cover;
   padding: 20px 30px;
-  border-radius: 100px;
+  border-radius: 10px;
   
 }
 .col-3 {
-  background: url('https://i.ibb.co/BN60vZH/pexels-athena-3550651.jpg') no-repeat center center fixed;
+  /* background: url('https://i.ibb.co/BN60vZH/pexels-athena-3550651.jpg') no-repeat center center fixed; */
   background-size: cover;
   padding: 20px 10px;
   border-radius: 20px;
@@ -64,14 +64,26 @@ body {
 .task {
   margin-bottom: 20px;
 }
-.form-control, .form-select {
+/* .form-control, .form-select {
   background-color: #e4d9d9;
   border: none;
   color: #f5f2f2;
-}
+} */
 .form-control:focus, .form-select:focus {
-  background-color: #ecbd39;
+  background-color: #e4d9d9;
 }
 .form-label {
-  color: #55f1fc;
+  color: black;
 }
+
+.status-circle {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.Pending { background-color: red;}
+.In-Progress { background-color: yellow;}
+.Completed { background-color: green;}

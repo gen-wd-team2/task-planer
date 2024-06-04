@@ -13,16 +13,13 @@
         <h4 >Group By</h4>
         <ul>
           <li>
-            <label ><input type="checkbox" class="groupby comedown">To Do</label>
+            <label ><input type="checkbox" class="groupby comedown">Pending</label>
           </li>
           <li>
             <label><input type="checkbox" class="groupby">In Progress</label>
           </li>
           <li>
-            <label><input type="checkbox" class="groupby">Done</label>
-          </li>
-          <li>
-            <label><input type="checkbox" class="groupby">Blocked</label>
+            <label><input type="checkbox" class="groupby">Completed</label>
           </li>
         </ul>
       </div>
@@ -75,10 +72,9 @@
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select class="form-select" id="status" name="status" required>
-                        <option value="ToDo">To Do</option>
-                        <option value="InProgress">In Progress</option>
-                        <option value="Done">Done</option>
-                        <option value="Blocked">Blocked</option>
+                        <option value="Pending">Pending</option>
+                        <option value="InProgress">In-Progress</option>
+                        <option value="Completed">Completed</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a status.
