@@ -37,3 +37,17 @@ input, textarea {
 textarea {
   min-height:200px;
 }
+/* Styles for the search input */
+#searchInput {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#searchInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
