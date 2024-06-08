@@ -2,15 +2,15 @@
 const container = document.querySelector('.tasks');
 // const searchForm = document.querySelector('.search');
 
-const renderTasks = async (term) => {
-  console.log(term);
+const renderTasks = async () => {
+  console.log();
   let uri = 'http://localhost:3000/tasks';
 
   const res = await fetch(uri);
   const tasks = await res.json();
   console.log(tasks);
 
-  let template = '';
+  let template = ``;
   tasks.reverse().forEach(task => {
     template += `
       <div class="card mb-3 shadow-lg rounded" data-id${task.id} contenteditable="true">
@@ -80,7 +80,6 @@ const createTask = async (e) => {
 
 // form.addEventListener('submit', createTask);
 // search with keyword or name
-container.innerHTML = template;
 
 searchInput.addEventListener('input', (e) => {
   renderTasks(e.target.value);
