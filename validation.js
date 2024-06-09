@@ -116,3 +116,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const taskList = [
+      // Example tasks, replace with dynamic data as needed
+      { name: 'Task 1', status: 'Pending' },
+      { name: 'Task 2', status: 'In Progress' },
+      { name: 'Task 3', status: 'Completed' },
+      { name: 'Task 4', status: 'Pending' },
+    ];
+  
+    const taskListContainer = document.querySelector('.tasks.task-list');
+    const groupbyCheckboxes = document.querySelectorAll('.groupby');
+  
+    // Function to render tasks
+    function renderTasks(tasks) {
+      taskListContainer.innerHTML = '';
+      tasks.forEach(task => {
+        const taskElement = document.createElement('div');
+        taskElement.textContent = task.name;
+        taskElement.classList.add('task');
+        taskListContainer.appendChild(taskElement);
+      });
+    }
+  
+    // Function to filter tasks based on checked status
+    function filterTasks() {
+      const checkedStatuses = Array.from(groupbyCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+  
+      const filteredTasks = taskList.filter(task => checkedStatuses.includes(task.status) || checkedStatuses.length === 0);
+      renderTasks(filteredTasks);
+    }
+  
+    // Add event listeners to checkboxes
+    groupbyCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', filterTasks);
+    });
+  
+    // Initial render of tasks
+    renderTasks(taskList);
+  });
+  
