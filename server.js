@@ -1,4 +1,5 @@
 // javascript for index.html
+
 const container = document.querySelector('.tasks');
 // const searchForm = document.querySelector('.search');
 
@@ -15,7 +16,7 @@ const renderTasks = async (term) => {
     template += `
       <div class="card mb-3 shadow-lg rounded" data-id${task.id} contenteditable="true">
         <div class="card-body">
-          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status}"></span></h5>
+          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status}"></span><button id=${task.id}><i class="fa-solid fa-trash"></i></button> </h5>
           <p class="card-text"><strong>Description: </strong>${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
@@ -25,10 +26,22 @@ const renderTasks = async (term) => {
         </ul>
       </div>
     `
+
   });
 
 
+
+
   container.innerHTML = template;
+
+  const allbuttons=document.querySelectorAll('button');
+
+  allbuttons.forEach(function(button, index){
+    button.addEventListener('click', function(){
+      deletor(button.id);
+    })
+  })
+
 }
 
 
@@ -55,6 +68,31 @@ const createTask = async (e) => {
   window.location.replace('/')
 }
 
+async function deletor(id)  
+{
+let uri = 'http://localhost:3000/tasks'
+
+const res = await fetch(uri);
+let tasks = await res.json();
+
+// tasks.splice(index, 1);
+//  console.log(tasks);
+// let task=tasks[index];
+  console.log(id);
+//   console.log(task.id);
+ let deleteUri = uri+ '/'+ id;
+
+await fetch(deleteUri, {
+  method:'DELETE',
+})
+
+ window.localion.reload()
+
+}
+
+
+
+
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
@@ -80,10 +118,12 @@ const createTask = async (e) => {
 
 // form.addEventListener('submit', createTask);
 // search with keyword or name
-container.innerHTML = template;
+
 
 searchInput.addEventListener('input', (e) => {
   renderTasks(e.target.value);
 });
 
+
 window.addEventListener('DOMContentLoaded', () => renderTasks());
+
