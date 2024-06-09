@@ -124,10 +124,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to handle checkbox clicks
     function handleCheckboxClick(event) {
         const status = event.target.value;
-        const items = document.querySelectorAll('.item');
-        items.forEach(item => {
-            if (item.getAttribute('data-status') === status) {
-                item.classList.toggle('selected', event.target.checked);
+        const taskElements = document.querySelectorAll('.task');
+        taskElements.forEach(taskElement => {
+            if (taskElement.classList.contains(status)) {
+                taskElement.classList.toggle('selected', event.target.checked);
             }
         });
     }
