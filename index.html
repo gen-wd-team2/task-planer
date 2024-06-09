@@ -13,13 +13,13 @@
         <h4 >Group By</h4>
         <ul>
           <li>
-            <input type="checkbox" class="groupby comedown" value="Pending">Pending
+            <input type="checkbox" id="pendingCheckbox" class="groupby comedown" value="Pending">Pending
           </li>
           <li>
-            <input type="checkbox" class="groupby" value="In-Progress">In Progress
+            <input type="checkbox" id="progressCheckbox" class="groupby" value="In-Progress">In Progress
           </li>
           <li>
-            <input type="checkbox" class="groupby" value="Completed">Completed
+            <input type="checkbox" id="completedCheckbox" class="groupby" value="Completed">Completed
           </li>
         </ul>
       </div>
@@ -32,6 +32,18 @@
         <div class="p-4 tasks task-list">
         </div>
       </div>
+
+<!-- 
+      this code is trial data to test my query selection for the filter -->
+      <!-- <div class="items">
+        <div class="item" data-status="Pending">Item 1 (Pending)</div>
+        <div class="item" data-status="In-Progress">Item 2 (In Progress)</div>
+        <div class="item" data-status="Completed">Item 3 (Completed)</div>
+        <div class="item" data-status="Pending">Item 4 (Pending)</div>
+        <div class="item" data-status="In-Progress">Item 5 (In Progress)</div>
+    </div> -->
+
+    <!-- end of the trial data -->
       <div class="col-3">
         <h5>Create a Task</h5>
         <div class="container shadow-lg">

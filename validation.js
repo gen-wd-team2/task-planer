@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Form elements
     const taskForm = document.getElementById('taskForm');
     const taskNameInput = document.getElementById('taskName');
     const taskDescriptionInput = document.getElementById('taskDescription');
@@ -7,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const statusInput = document.getElementById('status');
     const errorAlert = document.getElementById('errorAlert');
     const tasksContainer = document.querySelector('.tasks');
+    const filters = document.querySelectorAll('.groupby');
+    const taskList = document.querySelector('.task-list');
 
     taskForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addTask(name, description, assignedTo, dueDate, status) {
         const taskElement = document.createElement('div');
-        taskElement.classList.add('task', 'mb-3', 'p-3', 'border', 'rounded');
+        taskElement.classList.add('task', 'mb-3', 'p-3', 'border', 'rounded', status);
         taskElement.innerHTML = `
             <h5>${name}</h5>
             <p>${description}</p>
@@ -72,13 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <p><strong>Status:</strong> ${status}</p>
         `;
         tasksContainer.appendChild(taskElement);
+        updateTasks();
     }
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const filters = document.querySelectorAll('.groupby');
-    const taskList = document.querySelector('.task-list');
 
     fetch('db.json')
         .then(response => response.json())
@@ -86,21 +84,28 @@ document.addEventListener('DOMContentLoaded', function() {
             const tasks = data.tasks;
             renderTasks(tasks);
             filters.forEach(filter => {
-                filter.addEventListener('change', () => updateTasks(tasks));
+                filter.addEventListener('change', () => updateTasks());
             });
-            updateTasks(tasks); // Initialize with current filter state
+            updateTasks(); // Initialize with current filter state
         });
 
     function renderTasks(tasks) {
+        taskList.innerHTML = '';
         tasks.forEach(task => {
             const taskElement = document.createElement('div');
-            taskElement.className = `task ${task.type}`;
-            taskElement.textContent = task.title;
+            taskElement.className = `task ${task.status}`;
+            taskElement.innerHTML = `
+                <h5>${task.title}</h5>
+                <p>${task.description}</p>
+                <p><strong>Assigned To:</strong> ${task.assignedTo}</p>
+                <p><strong>Due Date:</strong> ${task.dueDate}</p>
+                <p><strong>Status:</strong> ${task.status}</p>
+            `;
             taskList.appendChild(taskElement);
         });
     }
 
-    function updateTasks(tasks) {
+    function updateTasks() {
         const activeFilters = Array.from(filters)
             .filter(filter => filter.checked)
             .map(filter => filter.value);
@@ -115,49 +120,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Function to handle checkbox clicks
+    function handleCheckboxClick(event) {
+        const status = event.target.value;
+        const items = document.querySelectorAll('.item');
+        items.forEach(item => {
+            if (item.getAttribute('data-status') === status) {
+                item.classList.toggle('selected', event.target.checked);
+            }
+        });
+    }
+
+    // Adding event listeners to the checkboxes
+    document.getElementById('pendingCheckbox').addEventListener('click', handleCheckboxClick);
+    document.getElementById('inProgressCheckbox').addEventListener('click', handleCheckboxClick);
+    document.getElementById('completedCheckbox').addEventListener('click', handleCheckboxClick);
 });
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const taskList = [
-      // Example tasks, replace with dynamic data as needed
-      { name: 'Task 1', status: 'Pending' },
-      { name: 'Task 2', status: 'In Progress' },
-      { name: 'Task 3', status: 'Completed' },
-      { name: 'Task 4', status: 'Pending' },
-    ];
-  
-    const taskListContainer = document.querySelector('.tasks.task-list');
-    const groupbyCheckboxes = document.querySelectorAll('.groupby');
-  
-    // Function to render tasks
-    function renderTasks(tasks) {
-      taskListContainer.innerHTML = '';
-      tasks.forEach(task => {
-        const taskElement = document.createElement('div');
-        taskElement.textContent = task.name;
-        taskElement.classList.add('task');
-        taskListContainer.appendChild(taskElement);
-      });
-    }
-  
-    // Function to filter tasks based on checked status
-    function filterTasks() {
-      const checkedStatuses = Array.from(groupbyCheckboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.value);
-  
-      const filteredTasks = taskList.filter(task => checkedStatuses.includes(task.status) || checkedStatuses.length === 0);
-      renderTasks(filteredTasks);
-    }
-  
-    // Add event listeners to checkboxes
-    groupbyCheckboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', filterTasks);
-    });
-  
-    // Initial render of tasks
-    renderTasks(taskList);
-  });
-  
