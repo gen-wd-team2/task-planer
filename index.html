@@ -13,13 +13,13 @@
         <h4 >Group By</h4>
         <ul>
           <li>
-            <label ><input type="checkbox" class="groupby comedown">Pending</label>
+            <input type="checkbox" id="pendingCheckbox" class="groupby comedown" value="Pending">Pending
           </li>
           <li>
-            <label><input type="checkbox" class="groupby">In Progress</label>
+            <input type="checkbox" id="progressCheckbox" class="groupby" value="In-Progress">In Progress
           </li>
           <li>
-            <label><input type="checkbox" class="groupby">Completed</label>
+            <input type="checkbox" id="completedCheckbox" class="groupby" value="Completed">Completed
           </li>
         </ul>
       </div>
@@ -30,13 +30,14 @@
         </div>
         <div class="p-4 tasks task-list"></div>
       </div>
+
       <div class="col-3">
         <h5>Create a Task</h5>
         <div class="container shadow-lg">
             <form id="taskForm" class="needs-validation pb-2" novalidate>
                 <div class="mb-3">
                     <label for="taskName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="taskName" name="name" placeholder="Enter Your Task Name" required>
+                    <input type="text" class="form-control" id="taskName" name="name" placeholder="Enter task name" required>
                     <div class="invalid-feedback">
                       Please enter a task name
                   </div>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="taskDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="taskDescription" rows="3" name="description" placeholder="Enter your description" required></textarea>
+                    <textarea class="form-control" id="taskDescription" rows="3" name="description" placeholder="Enter task description" required></textarea>
                     <div class="invalid-feedback">
                       Please enter a task description
                   </div>

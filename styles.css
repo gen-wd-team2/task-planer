@@ -86,7 +86,11 @@ body {
 
 .Pending { background-color: red;}
 .In-Progress { background-color: orange;}
-.Completed { background-color: gray;}
+.Completed { background-color: green;}
+
+.border-Pending {border: 2px solid red}
+.border-In-Progress {border: 2px solid orange}
+.border-Completed {border: 2px solid green}
 
 /* Styles for the search input */
 #searchInput {
