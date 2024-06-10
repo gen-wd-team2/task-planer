@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
     // Function to handle checkbox clicks
     function handleCheckboxClick(event) {
         const status = event.target.value;

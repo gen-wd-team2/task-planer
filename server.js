@@ -1,3 +1,4 @@
+
 const container = document.querySelector('.tasks');
 const pendingCheckbox = document.getElementById('pendingCheckbox');
 const progressCheckbox = document.getElementById('progressCheckbox');
@@ -30,7 +31,7 @@ const renderTasks = async () => {
     template += `
       <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()}" data-id="${task.id}" contenteditable="true">
         <div class="card-body">
-          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status.toLowerCase()}"></span></h5>
+          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status}"></span><button id=${task.id}><i class="fa-solid fa-trash"></i></button> </h5>
           <p class="card-text"><strong>Description: </strong>${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
@@ -43,7 +44,17 @@ const renderTasks = async () => {
   });
 
   container.innerHTML = template;
-};
+
+  const allbuttons=document.querySelectorAll('button');
+
+  allbuttons.forEach(function(button, index){
+    button.addEventListener('click', function(){
+      deletor(button.id);
+    })
+  })
+
+}
+
 
 // Event listeners for checkboxes
 [pendingCheckbox, progressCheckbox, completedCheckbox].forEach(checkbox => {
@@ -83,6 +94,32 @@ const createTask = async (e) => {
   window.location.replace('/');
 };
 
+async function deletor(id)  
+{
+let uri = 'http://localhost:3000/tasks'
+
+const res = await fetch(uri);
+let tasks = await res.json();
+
+// tasks.splice(index, 1);
+//  console.log(tasks);
+// let task=tasks[index];
+  console.log(id);
+//   console.log(task.id);
+ let deleteUri = uri+ '/'+ id;
+
+await fetch(deleteUri, {
+  method:'DELETE',
+})
+
+ window.localion.reload('/')
+
+}
+
+
+
+
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict';
@@ -112,4 +149,6 @@ searchInput.addEventListener('input', (e) => {
   renderTasks(e.target.value);
 });
 
+
 window.addEventListener('DOMContentLoaded', () => renderTasks());
+
