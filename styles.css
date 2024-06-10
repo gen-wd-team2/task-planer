@@ -84,13 +84,16 @@ body {
   margin-left: 10px;
 }
 
-.Pending { background-color: red;}
+.Todo { background-color: red;}
 .In-Progress { background-color: orange;}
-.Completed { background-color: green;}
+.Review {background-color: green;}
+.Done { background-color:gray;}
 
-.border-Pending {border: 2px solid red}
+
+.border-Todo {border: 2px solid red}
 .border-In-Progress {border: 2px solid orange}
-.border-Completed {border: 2px solid green}
+.border-Review {border: 2px solid green}
+.border-Done { border: 2px solid gray;}
 
 /* Styles for the search input */
 #searchInput {
@@ -108,10 +111,15 @@ body {
 }
 
 .delete-button {
-  position: absolute;
+  /* position: absolute;
   top: 10px;
-  right: 10px;
-  background-color: transparent;
+  right: 10px; */
+  color: white;
+  background-color: red;
   border: none;
   cursor: pointer;
+}
+
+li + button {
+  display: block;
 }
