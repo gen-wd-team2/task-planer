@@ -1,4 +1,3 @@
-
 const container = document.querySelector('.tasks');
 const pendingCheckbox = document.getElementById('pendingCheckbox');
 const progressCheckbox = document.getElementById('progressCheckbox');
@@ -13,12 +12,13 @@ const getSelectedStatuses = () => {
   return statuses;
 };
 
-const renderTasks = async () => {
-  console.log();
+const renderTasks = async (term = '') => { // Default term to an empty string
   let uri = 'http://localhost:3000/tasks';
 
   const res = await fetch(uri);
   const tasks = await res.json();
+
+  let statuses = getSelectedStatuses();
 
   let filteredTasks = tasks.filter(task => 
     (statuses.length === 0 || statuses.includes(task.status)) && 
@@ -26,18 +26,19 @@ const renderTasks = async () => {
      task.description.toLowerCase().includes(term.toLowerCase()))
   );
 
-  let template = ``;
-  tasks.reverse().forEach(task => {
+  let template = '';
+  filteredTasks.reverse().forEach(task => {
     template += `
       <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()}" data-id="${task.id}" contenteditable="true">
         <div class="card-body">
-          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status}"></span><button id=${task.id}><i class="fa-solid fa-trash"></i></button> </h5>
+          <h5 class="card-title"><strong>Name: </strong>${task.name} <span class="status-circle ${task.status}"></span></h5>
           <p class="card-text"><strong>Description: </strong>${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
-              <li class="list-group-item border-${task.status.toLowerCase()}"><strong>Assigned To: </strong>${task.assignedTo} </li>
+              <li class="list-group-item border-${task.status.toLowerCase()}"><strong>Assigned To: </strong>${task.assignedTo}</li>
               <li class="list-group-item border-${task.status.toLowerCase()}"><strong>Due Date</strong>: ${task.dueDate}</li>
               <li class="list-group-item"><strong>Status</strong>: ${task.status}</li>
+               <button class="delete-button" id="${task.id}"><i class="fa-solid fa-trash"></i></button>
         </ul>
       </div>
     `;
@@ -45,16 +46,14 @@ const renderTasks = async () => {
 
   container.innerHTML = template;
 
-  const allbuttons=document.querySelectorAll('button');
+  const allButtons = document.querySelectorAll('button');
 
-  allbuttons.forEach(function(button, index){
-    button.addEventListener('click', function(){
+  allButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
       deletor(button.id);
-    })
-  })
-
-}
-
+    });
+  });
+};
 
 // Event listeners for checkboxes
 [pendingCheckbox, progressCheckbox, completedCheckbox].forEach(checkbox => {
@@ -91,33 +90,20 @@ const createTask = async (e) => {
     headers: { 'Content-Type': 'application/json' }
   });
 
-  window.location.replace('/');
+  // Re-render tasks after creating a new task
+  renderTasks();
 };
 
-async function deletor(id)  {
-let uri = 'http://localhost:3000/tasks'
+async function deletor(id) {
+  let uri = 'http://localhost:3000/tasks/' + id;
 
-const res = await fetch(uri);
-let tasks = await res.json();
+  await fetch(uri, {
+    method: 'DELETE',
+  });
 
-// tasks.splice(index, 1);
-//  console.log(tasks);
-// let task=tasks[index];
-  console.log(id);
-//   console.log(task.id);
- let deleteUri = uri+ '/'+ id;
-
-await fetch(deleteUri, {
-  method:'DELETE',
-})
-
- window.location.reload('/')
-
+  // Re-render tasks after deleting a task
+  renderTasks();
 }
-
-
-
-
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
@@ -136,18 +122,7 @@ await fetch(deleteUri, {
         createTask(event);
       }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-
-// form.addEventListener('submit', createTask);
-// search with keyword or name
-
-searchInput.addEventListener('input', (e) => {
-  renderTasks(e.target.value);
-});
-
-
-window.addEventListener('DOMContentLoaded', () => renderTasks());
-
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
