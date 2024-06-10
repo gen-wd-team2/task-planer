@@ -63,6 +63,14 @@
       "assignedTo": "Pending",
       "dueDate": "2024-06-13",
       "status": "Completed"
+    },
+    {
+      "id": "6f8a",
+      "name": "Kingsford Owusu-Achiaw",
+      "description": "sit",
+      "assignedTo": "Alfred",
+      "dueDate": "2024-06-11",
+      "status": "Pending"
     }
   ]
 }
