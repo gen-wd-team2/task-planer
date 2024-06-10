@@ -1,12 +1,12 @@
 {
   "tasks": [
     {
-      "id": "3076",
-      "name": "Kingsford Owusu-Achiaw",
-      "description": "Don't answer 1\nDon't answer 2",
-      "assignedTo": "Kingsford",
-      "dueDate": "2024-06-13",
-      "status": "todo"
+      "name": "",
+      "description": "",
+      "assignedTo": "",
+      "dueDate": "",
+      "status": "Pending",
+      "id": "3076"
     },
     {
       "id": "f7af",
@@ -17,20 +17,20 @@
       "status": "Pending"
     },
     {
-      "id": "c526",
-      "name": "sleep",
-      "description": "sleep at 1",
-      "assignedTo": "perp",
-      "dueDate": "2024-08-18",
-      "status": "Completed"
+      "name": "",
+      "description": "",
+      "assignedTo": "",
+      "dueDate": "",
+      "status": "Pending",
+      "id": "c526"
     },
     {
-      "id": "3472",
-      "name": "h",
-      "description": "buy rice",
-      "assignedTo": "perp",
-      "dueDate": "2024-11-05",
-      "status": "Pending"
+      "name": "",
+      "description": "",
+      "assignedTo": "",
+      "dueDate": "",
+      "status": "Pending",
+      "id": "3472"
     }
   ]
 }

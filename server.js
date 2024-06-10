@@ -1,3 +1,4 @@
+
 // javascript for index.html
 const container = document.querySelector('.tasks');
 // const searchForm = document.querySelector('.search');
@@ -13,7 +14,7 @@ const renderTasks = async (term) => {
   let template = '';
   tasks.reverse().forEach(task => {
     template += `
-      <div class="card mb-3 shadow-lg">
+      <div tabindex="0" class="card mb-3 shadow-lg" data-task-id=${task.id}>
         <div class="card-body">
           <h5 class="card-title">${task.name}</h5>
           <p class="card-text">${task.description}</p> 
@@ -23,12 +24,34 @@ const renderTasks = async (term) => {
               <li class="list-group-item"><span>Due Date</span>: ${task.dueDate}</li>
               <li class="list-group-item"><span>Status</span>: ${task.status}</li>
         </ul>
+        <button class="btn btn-primary" data-button>save edit</button>
       </div>
     `
   });
 
 
   container.innerHTML = template;
+
+  const taskCardDivs = document.querySelectorAll('[data-task-id]');
+// console.log(taskCardId,' idds');
+
+taskCardDivs.forEach(card => {
+  console.log('card, adding', card);
+
+  const saveButton =  card.querySelector('[data-button]');
+
+console.log(saveButton,'button')
+
+saveButton.addEventListener('click', event => {
+  const taskId = event.target?.parentElement?.getAttribute('data-task-id');
+
+  if(taskId) {
+    updateTask(event, taskId)
+  }
+})
+
+})
+
 }
 
 
@@ -54,6 +77,27 @@ const createTask = async (e) => {
 
   window.location.replace('/')
 }
+
+const updateTask = async (event,taskId,) => {
+
+  const task = {
+    name: form.name.value,
+    description: form.description.value,
+    assignedTo: form.assignedTo.value,
+    dueDate: form.dueDate.value,
+    status: form.status.value,
+  };
+
+  console.log(task, ':::for me');
+  console.log(form, 'name in form')
+
+  // await fetch(`http://localhost:3000/tasks/${taskId}`, {
+  //   method: 'PUT',
+  //   body: JSON.stringify(task),
+  //   headers: { 'Content-Type': 'application/json' }
+  // });
+
+};
 
 form.addEventListener('submit', createTask);
 
