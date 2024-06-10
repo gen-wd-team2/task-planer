@@ -3,6 +3,9 @@ export class TaskManager {
         this.tasks = []
         this.currentId = 0
     }
+    _saveToLocalStorage() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
     addTask({name,description, assignedTo, dueDate, status}){
         this.tasks.push({
             id: this.currentId + 1,
@@ -13,7 +16,19 @@ export class TaskManager {
             status: status
         })
         this.currentId++
+        this._saveToLocalStorage()
+    }
+    deleteTask(id){
+        delete this.tasks[this.tasks.findIndex(task => task.id == id)]
+        this._saveToLocalStorage()
+    }
+    updateTask(updatedTask){
+        this.tasks[this.tasks.findIndex(task => task.id == updatedTask.id)] = updatedTask
+        this._saveToLocalStorage()
 
+    }
+    getTasks(){
+        return this.tasks
     }
 }
 
