@@ -94,8 +94,7 @@ const createTask = async (e) => {
   window.location.replace('/');
 };
 
-async function deletor(id)  
-{
+async function deletor(id)  {
 let uri = 'http://localhost:3000/tasks'
 
 const res = await fetch(uri);
@@ -112,7 +111,7 @@ await fetch(deleteUri, {
   method:'DELETE',
 })
 
- window.localion.reload('/')
+ window.location.reload('/')
 
 }
 
