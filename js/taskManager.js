@@ -25,7 +25,7 @@ export class TaskManager {
         this._saveToLocalStorage()
     }
     deleteTask(id){
-        delete this.tasks[this.tasks.findIndex(task => task.id == id)]
+        this.tasks.splice(this.tasks.findIndex(task => task.id == id), 1)
         this._saveToLocalStorage()
     }
     updateTask(updatedTask){

@@ -116,6 +116,8 @@ const createTask = (e) => {
 
   taskManager.addTask(task);
 
+  window.location.replace('/')
+
   // Re-render tasks after creating a new task
   renderTasks();
 };
