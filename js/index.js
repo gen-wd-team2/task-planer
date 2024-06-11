@@ -24,7 +24,7 @@ const getSelectedStatuses = () => {
 // Render tasks based on selected statuses and search term
 const renderTasks = (term = '') => {
   let statuses = getSelectedStatuses();
-  let tasks = taskManager.getTasks();
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
 
   let filteredTasks = tasks.filter(task => 
     (statuses.length === 0 || statuses.includes(task.status)) && 
@@ -37,7 +37,7 @@ const renderTasks = (term = '') => {
     template += `
       <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()}" data-id="${task.id}">
         <div class="card-body">
-          <h5 class="card-title" contenteditable="true" data-field="name"><strong>Name: </strong>${task.name}</h5>
+          <h5 class="card-title" contenteditable="true" data-field="name"><strong>Name: </strong>${task.name}<span class="status-circle ${task.status}"></span></h5>
           <p class="card-text" contenteditable="true" data-field="description"><strong>Description: </strong>${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">

@@ -1,6 +1,12 @@
 export class TaskManager {
     constructor(){
-        this.tasks = []
+        if (localStorage.getItem('tasks') == null){
+            localStorage.setItem('tasks', JSON.stringify([]));
+            this.tasks = JSON.parse(localStorage.getItem('tasks'))
+        }
+        else{
+            this.tasks = JSON.parse(localStorage.getItem('tasks'))
+        }
         this.currentId = 0
     }
     _saveToLocalStorage() {
