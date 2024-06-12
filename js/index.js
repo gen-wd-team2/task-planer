@@ -47,13 +47,13 @@ const renderTasks = (term = '') => {
     template += `
       <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()}" data-id="${task.id}">
         <div class="card-body">
-          <h5 class="card-title" contenteditable="true" data-field="name"><strong>Name: </strong>${task.name}<span class="status-circle ${task.status}"></span></h5>
-          <p class="card-text" contenteditable="true" data-field="description"><strong>Description: </strong>${task.description}</p>
+          <h5 class="card-title" data-field="name"><strong>Name: </strong><span contenteditable="true">${task.name}<span><span class="status-circle ${task.status}"></span></h5>
+          <p class="card-text" data-field="description"><strong>Description: </strong><span contenteditable="true">${task.description}</span></p>
         </div>
         <ul class="list-group list-group-flush">
-              <li class="list-group-item" contenteditable="true" data-field="assignedTo"><strong>Assigned To: </strong>${task.assignedTo}</li>
-              <li class="list-group-item" contenteditable="true" data-field="dueDate"><strong>Due Date: </strong>${task.dueDate}</li>
-              <li class="list-group-item" contenteditable="true" data-field="status"><strong>Status: </strong>${task.status}</li>
+              <li class="list-group-item"  data-field="assignedTo"><strong>Assigned To: </strong><span contenteditable="true">${task.assignedTo}<span></li>
+              <li class="list-group-item"  data-field="dueDate"><strong>Due Date: </strong><span contenteditable="true">${task.dueDate}</span></li>
+              <li class="list-group-item" data-field="status"><strong>Status: </strong><span contenteditable="true">${task.status}</span></li>
               <li class="list-group-item d-flex justify-content-between">
                 <button class="delete-button btn btn-danger" data-id="${task.id}">
                   ${task.isVisible ? '<i class="fa-solid fa-trash"></i> Delete' : '<i class="fa-solid fa-undo"></i> Undo Delete'}
