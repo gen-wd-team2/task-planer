@@ -41,9 +41,9 @@ const renderTasks = (term = '') => {
           <p class="card-text" contenteditable="true" data-field="description"><strong>Description: </strong>${task.description}</p> 
         </div>
         <ul class="list-group list-group-flush">
-              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="assignedTo"><strong>Assigned To: </strong>${task.assignedTo}</li>
-              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="dueDate"><strong>Due Date</strong>: ${task.dueDate}</li>
-              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="status"><strong>Status</strong>: ${task.status}</li>
+              <li class="list-group-item" contenteditable="true" data-field="assignedTo"><strong>Assigned To: </strong>${task.assignedTo}</li>
+              <li class="list-group-item " contenteditable="true" data-field="dueDate"><strong>Due Date</strong>: ${task.dueDate}</li>
+              <li class="list-group-item" contenteditable="true" data-field="status"><strong>Status</strong>: ${task.status}</li>
               <li class="list-group-item d-flex justify-content-between">
                 <button class="delete-button btn btn-danger" data-id="${task.id}"><i class="fa-solid fa-trash"></i> Delete</button>
                 <button class="save-button btn btn-primary" data-id="${task.id}">Save edit</button>
