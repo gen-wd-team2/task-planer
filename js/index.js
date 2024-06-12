@@ -10,8 +10,9 @@ const progressCheckbox = document.getElementById('progressCheckbox');
 const reviewCheckbox = document.getElementById('reviewCheckbox');
 const doneCheckbox = document.getElementById('doneCheckbox');
 const searchInput = document.getElementById('searchInput');
-const deletedCheckbox=document.getElementById('deletedCheckbox');
-let hideDeleted=1;
+const deletedCheckbox = document.getElementById('deletedCheckbox');
+let hideDeleted = 1;
+
 // Get selected statuses from checkboxes
 const getSelectedStatuses = () => {
   let statuses = [];
@@ -20,10 +21,10 @@ const getSelectedStatuses = () => {
   if (reviewCheckbox.checked) statuses.push('Review');
   if (doneCheckbox.checked) statuses.push('Done');
   if (deletedCheckbox.checked) {
-    hideDeleted=0;
+    hideDeleted = 0;
   }
-  if(!deletedCheckbox.checked){
-    hideDeleted=1;
+  if (!deletedCheckbox.checked) {
+    hideDeleted = 1;
   }
   return statuses;
 };
@@ -33,15 +34,11 @@ const renderTasks = (term = '') => {
   let statuses = getSelectedStatuses();
   let tasks = JSON.parse(localStorage.getItem('tasks'));
 
-  console.log(hideDeleted)
-
-  let filteredTasks = tasks.filter(task => 
-      (statuses.length === 0 || statuses.includes(task.status)) && task.isVisible=== hideDeleted &&
-      (task.name.toLowerCase().includes(term.toLowerCase()) || 
-       task.description.toLowerCase().includes(term.toLowerCase()))
-    );
-  
-
+  let filteredTasks = tasks.filter(task =>
+    (statuses.length === 0 || statuses.includes(task.status)) && task.isVisible === hideDeleted &&
+    (task.name.toLowerCase().includes(term.toLowerCase()) ||
+      task.description.toLowerCase().includes(term.toLowerCase()))
+  );
 
   let template = '';
   filteredTasks.reverse().forEach(task => {
@@ -49,14 +46,16 @@ const renderTasks = (term = '') => {
       <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()}" data-id="${task.id}">
         <div class="card-body">
           <h5 class="card-title" contenteditable="true" data-field="name"><strong>Name: </strong>${task.name}<span class="status-circle ${task.status}"></span></h5>
-          <p class="card-text" contenteditable="true" data-field="description"><strong>Description: </strong>${task.description}</p> 
+          <p class="card-text" contenteditable="true" data-field="description"><strong>Description: </strong>${task.description}</p>
         </div>
         <ul class="list-group list-group-flush">
-              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="assignedTo"><strong>Assigned To: </strong>${task.assignedTo}</li>
-              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="dueDate"><strong>Due Date</strong>: ${task.dueDate}</li>
-              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="status"><strong>Status</strong>: ${task.status}</li>
+              <li class="list-group-item " contenteditable="true" data-field="assignedTo"><strong>Assigned To: </strong>${task.assignedTo}</li>
+              <li class="list-group-item " contenteditable="true" data-field="dueDate"><strong>Due Date: </strong>${task.dueDate}</li>
+              <li class="list-group-item " contenteditable="true" data-field="status"><strong>Status: </strong>${task.status}</li>
               <li class="list-group-item d-flex justify-content-between">
-                <button class="delete-button btn btn-danger" data-id="${task.id}"><i class="fa-solid fa-trash"></i> Delete</button>
+                <button class="delete-button btn btn-danger" data-id="${task.id}">
+                  ${task.isVisible ? '<i class="fa-solid fa-trash"></i> Delete' : '<i class="fa-solid fa-undo"></i> Undo Delete'}
+                </button>
                 <button class="save-button btn btn-primary" data-id="${task.id}">Save edit</button>
               </li>
         </ul>
@@ -65,11 +64,15 @@ const renderTasks = (term = '') => {
   });
 
   container.innerHTML = template;
-console.log(tasks)
+
   // Attach event listeners for delete and save buttons
   document.querySelectorAll('.delete-button').forEach(button => {
     button.addEventListener('click', function() {
-      deletor(button.dataset.id);
+      if (button.innerHTML.includes('Undo Delete')) {
+        undoDelete(button.dataset.id);
+      } else {
+        deletor(button.dataset.id);
+      }
     });
   });
 
@@ -123,12 +126,12 @@ const createTask = (e) => {
     assignedTo: form.assignedTo.value,
     dueDate: form.dueDate.value,
     status: form.status.value,
-    isVisible:1
+    isVisible: 1
   };
 
   taskManager.addTask(task);
 
-  window.location.replace('/')
+  window.location.replace('/');
 
   // Re-render tasks after creating a new task
   renderTasks();
@@ -136,10 +139,13 @@ const createTask = (e) => {
 
 const deletor = (id) => {
   taskManager.deleteTask(Number(id));
-   renderTasks();
+  renderTasks();
 };
 
-
+const undoDelete = (id) => {
+  taskManager.undoDeleteTask(Number(id));
+  renderTasks();
+};
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
