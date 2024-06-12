@@ -3,13 +3,55 @@
 
 /* base styles */
 body {
-  background: #352121;
+
   font-family: 'Inter';
+  background-color: rgb(240, 215, 240);
+  background-size:cover ;
+  color: black;
+  min-height: 100vh;
 }
 
-.groupby {
-  margin-right: 10px;
+.navbar {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px;
 }
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.main{
+  display: flex;
+}
+.col{
+  margin-top: 50px;
+    padding-top: 20px;
+    height: 800;
+    background-color: #ccc;
+   border-radius: 30px;
+   max-width: 200;
+   margin-right: 20px;
+}
+
+.col ul{
+  display: flex;
+  justify-content: center; 
+  align-items: center;      
+  height: 700
+}
+.col li{
+  padding: 10px;
+  margin: 5 auto;     
+  display: inline-block;  /* Make the ul an inline-block element */
+}
+
 
 .comedown {
   margin-top: 30px;
@@ -18,6 +60,9 @@ body {
 .tasks {
   height: 525px;
   overflow: auto;
+  background-size:cover;
+  padding: 20px 30px;
+  border-radius: 10px;
 }
 
 .rounded { border-radius: 8px;}
@@ -31,11 +76,7 @@ ul {
   gap: 10px;
 }
 body {
-  background: url('https://i.ibb.co/1Kxt2NC/pexels-cup-of-couple-6956917.jpg') no-repeat center center fixed;
-  background-size:cover ;
-  color: black;
-  display: flex;
-  min-height: 100vh;
+ 
 }
 .container {
   background-color: FFF8E8;
@@ -48,15 +89,13 @@ body {
 .border-black {
   border-color: black !important;
 }
-.tasks {
-  background: url('https://i.ibb.co/P6sf0cP/pexels-pnw-prod-9219059.jpg') no-repeat center center fixed; 
-  background-size:cover;
-  padding: 20px 30px;
-  border-radius: 10px;
+.task-list{
+  height: 610;
+  
   
 }
 .col-3 {
-  background: url('https://i.ibb.co/BN60vZH/pexels-athena-3550651.jpg') no-repeat center center fixed;
+  margin-left: 40px;
   background-size: auto;
   padding: 20px 10px;
   border-radius: 20px;
@@ -98,7 +137,7 @@ body {
 
 /* Styles for the search input */
 #searchInput {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
