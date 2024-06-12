@@ -20,19 +20,14 @@ const getSelectedStatuses = () => {
   if (progressCheckbox.checked) statuses.push('In-Progress');
   if (reviewCheckbox.checked) statuses.push('Review');
   if (doneCheckbox.checked) statuses.push('Done');
-  if (deletedCheckbox.checked) {
-    hideDeleted = 0;
-  }
-  if (!deletedCheckbox.checked) {
-    hideDeleted = 1;
-  }
+  hideDeleted = deletedCheckbox.checked ? 0 : 1;
   return statuses;
 };
 
 // Render tasks based on selected statuses and search term
 const renderTasks = (term = '') => {
   let statuses = getSelectedStatuses();
-  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
   let filteredTasks = tasks.filter(task =>
     (statuses.length === 0 || statuses.includes(task.status)) && task.isVisible === hideDeleted &&
@@ -138,8 +133,11 @@ const createTask = (e) => {
 };
 
 const deletor = (id) => {
-  taskManager.deleteTask(Number(id));
-  renderTasks();
+  const confirmed = confirm('Are you sure you want to delete this task?');
+  if (confirmed) {
+    taskManager.deleteTask(Number(id));
+    renderTasks();
+  }
 };
 
 const undoDelete = (id) => {
