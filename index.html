@@ -123,5 +123,9 @@
   </div>
 </div>
   <script type="module" src="js/index.js"></script>
+  <script>
+    const dueDateField=document.getElementById('dueDate');
+    dueDateField.min=new Date().toISOString().split("T")[0]
+  </script>
 </body>
 </html>
