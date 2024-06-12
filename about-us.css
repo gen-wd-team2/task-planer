@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+
+body{
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 500;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav ul{
+    display: flex;
+    justify-items: center;
+    gap: 32px;
+}
+
+#tm-name{
+    font-weight: 600;
+    font-size: 2rem;
+    color: #3B71FE;
+    align-content: center;
+}
+
+#get-qt{
+    font-weight: 600;
+    font-size: 0.8rem;
+    background-color: #3B71FE;
+    color: white;
+    border: 1px solid #3B71FE;
+    border-radius: 3px;
+    padding: 0.8rem;
+}
+
+section {
+    margin: 4rem;
+ }
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: flex-start;
+}
+.hero-text h1, p{
+    margin: 0;
+}
+
+.page-intro {
+    font-size: 1.37rem;
+    font-weight: 600;
+    color: #3B71FE;
+    margin-top: 0;
+}
+
+.page-main-text {
+    font-weight: 700;
+    font-size: 2.12rem;
+}
+
+.page-sub-text {
+    font-size: 1.37rem;
+    color: #0E0E2C;
+}
+
+.hero-text > .page-intro  {
+    font-weight: 700;
+}
+
+.hero-text > h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+
+
+.hero-image {
+    font-size: 4rem;
+}
+
+.hero-contact {
+    display: flex;
+    text-align: start;
+    gap: 12px;
+}
+
+.hero-contact > button {
+    background-color: #3B71FE;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    border: none ;
+}
+
+/*  our clients */
+
+.our-clients > p {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.our-clients > ul {
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.our-clients img {
+    height: 32px;
+    object-fit:fill;
+}
+
+/* our services */
+
+
+
+.our-services-eg > h3 {
+    font-weight: 700;
+    font-size: 1.37rem;
+    color: #3B71FE;
+}
+
+.our-services-eg > p {
+    color: #0E0E2C;
+}
+
+/* .our-services-eg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+} */
+
+.our-services-content {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: 
+    "header header service-1 service-2"
+    "service-3 service-4 service-5 service-6";
+    gap: 20px;
+}
+
+.our-services-content > h1 {grid-area: header;}
+#service-1 {grid-area: service-1}
+#service-2 {grid-area: service-2}
+#service-3 {grid-area: service-3}
+#service-4 {grid-area: service-4}
+#service-5 {grid-area: service-5}
+#service-6 {grid-area: service-6}
+
+.our-services-eg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.our-services-eg h3 {
+    margin: 0;
+}
+
+.our-services-eg button {
+    background-color: white;
+    border: 1px solid #3B71FE;
+    color: #3B71FE;
+    /* width:16px; */
+}
+
+.our-services-content > h1 {
+    margin-top: 0;
+}
+
+
+.our-team {
+    display: flex;
+}
+
+/* our-work */
+
+.our-work-eg {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-areas: 
+    "work-1 work-2 work-5"
+    "work-3 work-4 work-5";
+    gap: 20px;
+}
+
+#work-1 {grid-area: work-1}
+#work-2 {grid-area: work-2}
+#work-3 {grid-area: work-3}
+#work-4 {grid-area: work-4}
+#work-5 {grid-area: work-5}
+
+.our-work-tiny > h1 {
+    font-weight: bold;
+    color: #3B71FE;
+    font-size: 0.87rem;
+}
+
+.our-work-tiny > p {
+    font-weight: 600;
+    color: #0E0E2C;
+    font-size: 0.87rem;
+}
+
+/* our-testimonials */
+.our-testimonial {
+    background-color: #dee0e4;
+}
