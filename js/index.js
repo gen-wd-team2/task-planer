@@ -10,14 +10,21 @@ const progressCheckbox = document.getElementById('progressCheckbox');
 const reviewCheckbox = document.getElementById('reviewCheckbox');
 const doneCheckbox = document.getElementById('doneCheckbox');
 const searchInput = document.getElementById('searchInput');
-
+const deletedCheckbox=document.getElementById('deletedCheckbox');
+let hideDeleted=1;
 // Get selected statuses from checkboxes
 const getSelectedStatuses = () => {
-  const statuses = [];
+  let statuses = [];
   if (todoCheckbox.checked) statuses.push('Todo');
   if (progressCheckbox.checked) statuses.push('In-Progress');
   if (reviewCheckbox.checked) statuses.push('Review');
   if (doneCheckbox.checked) statuses.push('Done');
+  if (deletedCheckbox.checked) {
+    hideDeleted=0;
+  }
+  if(!deletedCheckbox.checked){
+    hideDeleted=1;
+  }
   return statuses;
 };
 
@@ -26,11 +33,15 @@ const renderTasks = (term = '') => {
   let statuses = getSelectedStatuses();
   let tasks = JSON.parse(localStorage.getItem('tasks'));
 
+  console.log(hideDeleted)
+
   let filteredTasks = tasks.filter(task => 
-    (statuses.length === 0 || statuses.includes(task.status)) && 
-    (task.name.toLowerCase().includes(term.toLowerCase()) || 
-     task.description.toLowerCase().includes(term.toLowerCase()))
-  );
+      (statuses.length === 0 || statuses.includes(task.status)) && task.isVisible=== hideDeleted &&
+      (task.name.toLowerCase().includes(term.toLowerCase()) || 
+       task.description.toLowerCase().includes(term.toLowerCase()))
+    );
+  
+
 
   let template = '';
   filteredTasks.reverse().forEach(task => {
@@ -54,7 +65,7 @@ const renderTasks = (term = '') => {
   });
 
   container.innerHTML = template;
-
+console.log(tasks)
   // Attach event listeners for delete and save buttons
   document.querySelectorAll('.delete-button').forEach(button => {
     button.addEventListener('click', function() {
@@ -86,7 +97,7 @@ const saveEdit = (id) => {
 };
 
 // Event listeners for checkboxes
-[todoCheckbox, progressCheckbox, reviewCheckbox, doneCheckbox].forEach(checkbox => {
+[todoCheckbox, progressCheckbox, reviewCheckbox, doneCheckbox, deletedCheckbox].forEach(checkbox => {
   checkbox.addEventListener('change', () => {
     renderTasks(searchInput.value);
   });
@@ -112,6 +123,7 @@ const createTask = (e) => {
     assignedTo: form.assignedTo.value,
     dueDate: form.dueDate.value,
     status: form.status.value,
+    isVisible:1
   };
 
   taskManager.addTask(task);
@@ -124,8 +136,10 @@ const createTask = (e) => {
 
 const deletor = (id) => {
   taskManager.deleteTask(Number(id));
-  renderTasks();
+   renderTasks();
 };
+
+
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {

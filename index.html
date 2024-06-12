@@ -25,6 +25,9 @@
           <li>
             <input type="checkbox" id="doneCheckbox" class="groupby" value="Done">Done
           </li>
+          <li>
+            <input type="checkbox" id="deletedCheckbox" class="groupby" value="Deleted">Deleted
+          </li>
         </ul>
       </div>
       <div class="col-7 border-end border-black">
@@ -95,5 +98,9 @@
     </div>
   </div>
   <script type="module" src="js/index.js"></script>
+  <script>
+    const dueDateField=document.getElementById('dueDate');
+    dueDateField.min=new Date().toISOString().split("T")[0]
+  </script>
 </body>
 </html>

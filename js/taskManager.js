@@ -7,7 +7,7 @@ export class TaskManager {
         else{
             this.tasks = JSON.parse(localStorage.getItem('tasks'))
         }
-        this.currentId = 0
+        this.currentId = this.tasks==null?0:this.tasks.length;
     }
     _saveToLocalStorage() {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
@@ -19,15 +19,32 @@ export class TaskManager {
             description:description,
             assignedTo: assignedTo,
             dueDate: dueDate,
-            status: status
+            status: status,
+            isVisible:1
         })
         this.currentId++
         this._saveToLocalStorage()
     }
     deleteTask(id){
-        this.tasks.splice(this.tasks.findIndex(task => task.id == id), 1)
+        let taskToDelete=this.tasks[this.tasks.findIndex(task => task.id == id)]
+        taskToDelete.isVisible=0;
+        // console.log(taskToDelete)
+        console.log(id)
+        // console.log(this.tasks.findIndex(task => task.id == taskToDelete.id))
+        // this.tasks.splice(this.tasks.findIndex(task => task.id == id), 1)
+        this.tasks[this.tasks.findIndex(task => task.id == taskToDelete.id)] = taskToDelete
+
+            
         this._saveToLocalStorage()
     }
+
+    
+
+
+
+
+
+
     updateTask(updatedTask){
         this.tasks[this.tasks.findIndex(task => task.id == updatedTask.id)] = updatedTask
         this._saveToLocalStorage()
