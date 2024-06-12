@@ -85,8 +85,11 @@ const renderTasks = (term = '') => {
   });
 };
 
-// Save edited task
+// Save edited task with validation
 const saveEdit = (id) => {
+  const validAssignees = ['Alfred', 'Perpetual', 'Fredrick', 'Seyram','Kingsford'];
+  const validStatuses = ['Todo', 'In-Progress', 'Done', 'Review'];
+
   const card = document.querySelector(`div[data-id='${id}']`);
   const updatedTask = {
     id: Number(id),
@@ -97,6 +100,17 @@ const saveEdit = (id) => {
     status: card.querySelector("[data-field='status']").innerText.replace('Status: ', ''),
     isVisible: 1 // Ensure task isVisible is set to 1 on save
   };
+
+  // Validation
+  if (!validAssignees.includes(updatedTask.assignedTo)) {
+    alert(`Assigned To must be one of the following: ${validAssignees.join(', ')}`);
+    return;
+  }
+
+  if (!validStatuses.includes(updatedTask.status)) {
+    alert(`Status must be one of the following: ${validStatuses.join(', ')}`);
+    return;
+  }
 
   console.log('Updated task:', updatedTask);
 
