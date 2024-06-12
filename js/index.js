@@ -29,11 +29,18 @@ const renderTasks = (term = '') => {
   let statuses = getSelectedStatuses();
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+  console.log('Fetched tasks from localStorage:', tasks);
+  console.log('Selected statuses:', statuses);
+  console.log('Hide deleted:', hideDeleted);
+
   let filteredTasks = tasks.filter(task =>
-    (statuses.length === 0 || statuses.includes(task.status)) && task.isVisible === hideDeleted &&
+    (statuses.length === 0 || statuses.includes(task.status)) && 
+    task.isVisible === hideDeleted &&
     (task.name.toLowerCase().includes(term.toLowerCase()) ||
       task.description.toLowerCase().includes(term.toLowerCase()))
   );
+
+  console.log('Filtered tasks:', filteredTasks);
 
   let template = '';
   filteredTasks.reverse().forEach(task => {
@@ -87,8 +94,11 @@ const saveEdit = (id) => {
     description: card.querySelector("[data-field='description']").innerText.replace('Description: ', ''),
     assignedTo: card.querySelector("[data-field='assignedTo']").innerText.replace('Assigned To: ', ''),
     dueDate: card.querySelector("[data-field='dueDate']").innerText.replace('Due Date: ', ''),
-    status: card.querySelector("[data-field='status']").innerText.replace('Status: ', '')
+    status: card.querySelector("[data-field='status']").innerText.replace('Status: ', ''),
+    isVisible: 1 // Ensure task isVisible is set to 1 on save
   };
+
+  console.log('Updated task:', updatedTask);
 
   taskManager.updateTask(updatedTask);
   renderTasks();
