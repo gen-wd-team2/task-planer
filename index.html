@@ -13,18 +13,25 @@
     <title>01extras</title>
   </head>
 
-  <body class="">
+  <body>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <label for="taskLabels">Task Types:</label>
+        <div class="col-4">
+          <label for="taskLabels">Number of Columns:</label>
           <input type="number" id="taskLabels" max="8" min="1" />
+          <button id="addColumn" class="btn btn-primary">+</button>
+          <button id="removeColumn" class="btn btn-primary">-</button>
+        </div>
+        <div class="col-4">
+          <label for="reorderIndex">Reorder Columns:</label>
+          <input type="number" id="reorderIndex" min="1" />
+          <button id="reorderColumn" class="btn btn-primary">Reorder</button>
         </div>
         <div class="col text-end">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">Create Task</button>
         </div>
       </div>
-      <div class="row taskColumns min-vh-100"></div>
+      <div class="row taskColumns min-vh-100" id="taskColumns"></div>
     </div>
 
     <!-- Modal -->
@@ -32,62 +39,26 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="taskModalLabel">Create Task</h5>
+            <h5 class="modal-title" id="taskModalLabel">Edit Column</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form id="taskForm" class="needs-validation pb-2" novalidate>
-                <div class="mb-3">
-                    <label for="taskName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="taskName" name="name" placeholder="Enter task name" required>
-                    <div class="invalid-feedback">
-                      Please enter a task name
-                  </div>
-
+              <div class="mb-3">
+                <label for="columnTitle" class="form-label">Column Title</label>
+                <input type="text" class="form-control" id="columnTitle" name="title" placeholder="Enter column title" required>
+                <div class="invalid-feedback">
+                  Please enter a column title.
                 </div>
-                <div class="mb-3">
-                    <label for="taskDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="taskDescription" rows="3" name="description" placeholder="Enter task description" required></textarea>
-                    <div class="invalid-feedback">
-                      Please enter a task description
-                  </div>
-                   
+              </div>
+              <div class="mb-3">
+                <label for="columnColor" class="form-label">Column Color</label>
+                <input type="color" class="form-control" id="columnColor" name="color" required>
+                <div class="invalid-feedback">
+                  Please select a column color.
                 </div>
-                <div class="mb-3">
-                    <label for="assignedTo" class="form-label">Assigned To</label>
-                    <select class="form-select" id="assignedTo" name="assignedTo" required>
-                      <option value="Alfred">Alfred</option>
-                      <option value="Perpetual">Perpetual</option>
-                      <option value="Kingsford">Kingsford</option>
-                      <option value="Fredrick">Fredrick</option>
-                      <option value="Seyram">Seyram</option>
-                  </select>
-                  <div class="invalid-feedback">
-                      Please select a status.
-                  </div>
-               
-                </div>
-                <div class="mb-3">
-                    <label for="dueDate" class="form-label">Due Date</label>
-                    <input type="date" class="form-control" id="dueDate" name="dueDate" required>
-                    <div class="invalid-feedback">
-                        Please select a due date.
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select class="form-select" id="status" name="status" required>
-                        <option value="Todo">Todo</option>
-                        <option value="In-Progress">In Progress</option>
-                        <option value="Review">Review</option>
-                        <option value="Done">Done</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please select a status.
-                    </div>
-                </div>
-                <div id="errorAlert" class="alert alert-danger d-none"></div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
             </form>
           </div>
         </div>
