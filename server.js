@@ -14,7 +14,7 @@ const getSelectedStatuses = () => {
   return statuses;
 };
 
-const renderTasks = async (term = '') => { // Default term to an empty string
+const renderTasks = async (term = '') => { 
   let uri = 'http://localhost:3000/tasks';
 
   const res = await fetch(uri);
@@ -30,8 +30,9 @@ const renderTasks = async (term = '') => { // Default term to an empty string
 
   let template = '';
   filteredTasks.reverse().forEach(task => {
+    const priorityClass = task.priority.toLowerCase();
     template += `
-      <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()}" data-id="${task.id}">
+      <div class="card mb-3 shadow-lg rounded border-${task.status.toLowerCase()} ${priorityClass}" data-id="${task.id}">
         <div class="card-body">
           <h5 class="card-title" contenteditable="true" data-field="name"><strong>Name: </strong>${task.name}<span class="status-circle ${task.status}"></span></h5>
           <p class="card-text" contenteditable="true" data-field="description"><strong>Description: </strong>${task.description}</p> 
@@ -40,6 +41,7 @@ const renderTasks = async (term = '') => { // Default term to an empty string
               <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="assignedTo"><strong>Assigned To: </strong>${task.assignedTo}</li>
               <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="dueDate"><strong>Due Date</strong>: ${task.dueDate}</li>
               <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="status"><strong>Status</strong>: ${task.status}</li>
+              <li class="list-group-item border-${task.status.toLowerCase()}" contenteditable="true" data-field="priority"><strong>Priority</strong>: ${task.priority}</li>
               <li class="list-group-item flex justify-content-between">
                 <button class="delete-button btn btn-danger" id="${task.id}"><i class="fa-solid fa-trash"></i> Delete</button>
                 <button class="save-button btn btn-primary" data-id="${task.id}">Save edit</button>
@@ -50,7 +52,6 @@ const renderTasks = async (term = '') => { // Default term to an empty string
   });
 
   container.innerHTML = template;
-
   const deleteButtons = document.querySelectorAll('.delete-button');
   deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -73,7 +74,8 @@ const saveEdit = async (id) => {
     description: card.querySelector("[data-field='description']").innerText.replace('Description: ', ''),
     assignedTo: card.querySelector("[data-field='assignedTo']").innerText.replace('Assigned To: ', ''),
     dueDate: card.querySelector("[data-field='dueDate']").innerText.replace('Due Date: ', ''),
-    status: card.querySelector("[data-field='status']").innerText.replace('Status: ', '')
+    status: card.querySelector("[data-field='status']").innerText.replace('Status: ', ''),
+    priority: card.querySelector("[data-field='priority']").innerText.replace('Priority: ', '')
   };
 
   await fetch(`http://localhost:3000/tasks/${id}`, {
@@ -112,6 +114,7 @@ const createTask = async (e) => {
     assignedTo: form.assignedTo.value,
     dueDate: form.dueDate.value,
     status: form.status.value,
+    priority: form.priority.value,
   };
 
   await fetch('http://localhost:3000/tasks', {

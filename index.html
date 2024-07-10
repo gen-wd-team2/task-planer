@@ -67,7 +67,6 @@
                   <div class="invalid-feedback">
                       Please select a status.
                   </div>
-               
                 </div>
                 <div class="mb-3">
                     <label for="dueDate" class="form-label">Due Date</label>
@@ -88,6 +87,19 @@
                         Please select a status.
                     </div>
                 </div>
+                <!-- Task creation form -->
+<div class="mb-3">
+  <label for="priority" class="form-label">Priority</label>
+  <select class="form-select" id="priority" name="priority" required>
+      <option value="LOW">LOW</option>
+      <option value="MEDIUM">MEDIUM</option>
+      <option value="URGENT">URGENT</option>
+  </select>
+  <div class="invalid-feedback">
+      Please select a priority level.
+  </div>
+</div>
+
                 <div id="errorAlert" class="alert alert-danger d-none"></div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

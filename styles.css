@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-
 /* base styles */
 body {
   background: #352121;
@@ -111,9 +110,6 @@ body {
 }
 
 .delete-button {
-  /* position: absolute;
-  top: 10px;
-  right: 10px; */
   color: white;
   background-color: red;
   border: none;
@@ -122,4 +118,17 @@ body {
 
 li + button {
   display: block;
+}
+
+.low {
+  background-color: lightblue;
+}
+
+.medium {
+  background-color: lightgreen;
+}
+
+.urgent {
+  background-color: red;
+  color: white;
 }
